@@ -5,9 +5,16 @@ const { test } = Deno;
 await createPdf(100, "pdf/100_pages.pdf");
 
 test({
-  name: "splitPdf",
+  name: "splitPdf can split every one page",
   fn() {
-    splitPdf("pdf/100_pages.pdf", "output", 2);
+    splitPdf("pdf/100_pages.pdf", "output");
+  },
+});
+
+test({
+  name: "splitPdf can split every multiple pages (only if input file page count % split files page count === 0)",
+  fn() {
+    splitPdf("pdf/100_pages.pdf", "output", 5);
   },
 });
 

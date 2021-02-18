@@ -9,10 +9,17 @@ import {
 
 const INVALID_FILES: string[] = [];
 
+function range(start: number = 1, stop: number, step: number = 1) {
+  return Array.from(
+    { length: (stop - start) / step + 1 },
+    (_, i) => start + (i * step),
+  );
+}
+
 export async function splitPdf(
   sourceFilePath: string,
   outputDirPath: string,
-  everyNthPage: number = 1
+  everyNthPage: number = 1,
 ): Promise<string[]> {
   const createdFilesPaths: string[] = [];
   let sourceFile: any;
@@ -22,7 +29,10 @@ export async function splitPdf(
       async (_: any, i: number) => {
         if (i % everyNthPage == 0) {
           const doc = await PDFDocument.create();
-          const pages = await doc.copyPages(sourceFile, [i, i + 1]);
+          const pages = await doc.copyPages(
+            sourceFile,
+            range(i, i + everyNthPage - 1),
+          );
           pages.forEach((page: any) => {
             const { width, height } = page.getSize();
             const rotationAngle = page.getRotation().angle;
