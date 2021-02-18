@@ -1,13 +1,13 @@
-import { markPdf, mergePdfs, splitPdfEveryTwoPages } from "./mod.ts";
+import { markPdf, mergePdfs, splitPdf } from "./mod.ts";
 import { createPdf } from "./mock.ts";
 const { test } = Deno;
 
 await createPdf(100, "pdf/100_pages.pdf");
 
 test({
-  name: "splitPdfEveryTwoPages",
+  name: "splitPdf",
   fn() {
-    splitPdfEveryTwoPages("pdf/100_pages.pdf", "output");
+    splitPdf("pdf/100_pages.pdf", "output", 2);
   },
 });
 

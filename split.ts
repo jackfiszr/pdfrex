@@ -9,9 +9,10 @@ import {
 
 const INVALID_FILES: string[] = [];
 
-export async function splitPdfEveryTwoPages(
+export async function splitPdf(
   sourceFilePath: string,
   outputDirPath: string,
+  everyNthPage: number = 1
 ): Promise<string[]> {
   const createdFilesPaths: string[] = [];
   let sourceFile: any;
@@ -19,7 +20,7 @@ export async function splitPdfEveryTwoPages(
     sourceFile = await PDFDocument.load(Deno.readFileSync(sourceFilePath));
     const byteArrays: Uint8Array[] = sourceFile.getPages().map(
       async (_: any, i: number) => {
-        if (i % 2 == 0) {
+        if (i % everyNthPage == 0) {
           const doc = await PDFDocument.create();
           const pages = await doc.copyPages(sourceFile, [i, i + 1]);
           pages.forEach((page: any) => {
@@ -33,7 +34,7 @@ export async function splitPdfEveryTwoPages(
           return await doc.save();
         }
       },
-    ).filter((p: any, i: number) => i % 2 === 0);
+    ).filter((p: any, i: number) => i % everyNthPage === 0);
     dlog({
       color: "yellow",
       title: "DZIELENIE",
