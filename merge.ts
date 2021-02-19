@@ -16,5 +16,5 @@ export async function mergePdfs(pdfsToMerge: string[]) {
     }
   }
   const mergedPdfFile = await mergedPdf.save();
-  return mergedPdfFile;
+  Deno.writeFileSync("./output/merged.pdf", mergedPdfFile);
 }

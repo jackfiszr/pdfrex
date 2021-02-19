@@ -12,9 +12,9 @@ test({
 });
 
 test({
-  name: "splitPdf can split every multiple pages (only if input file page count % split files page count === 0)",
-  fn() {
-    splitPdf("pdf/100_pages.pdf", "output", 5);
+  name: "splitPdf can split every n pages (input file page count % n === 0)",
+  async fn() {
+    await splitPdf("pdf/100_pages.pdf", "output", 5);
   },
 });
 
@@ -24,15 +24,13 @@ test({
     const files = Array.from(Deno.readDirSync("output")).filter((el: any) =>
       el.isFile
     ).map((file: any) => `./output/${file.name}`);
-    const pdfBytes = await mergePdfs(files);
-    Deno.writeFileSync("./output/merged.pdf", pdfBytes);
+    await mergePdfs(files);
   },
 });
 
 test({
   name: "markPdf",
   async fn() {
-    const pdfBytes = await markPdf("pdf/100_pages.pdf", "C O P Y");
-    Deno.writeFileSync("./pdf/marked.pdf", pdfBytes);
+    await markPdf("pdf/100_pages.pdf", "C O P Y");
   },
 });

@@ -30,5 +30,6 @@ export async function markPdf(pdfPath: string, text: string) {
       opacity: 0.5,
     });
   });
-  return await pdfDoc.save();
+  const pdfBytes = await pdfDoc.save();
+  Deno.writeFileSync("./pdf/marked.pdf", pdfBytes);
 }
