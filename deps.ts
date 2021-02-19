@@ -8,10 +8,10 @@ export {
 export {
   ensureDir,
   ensureDirSync,
-} from "https://deno.land/std@0.86.0/fs/mod.ts";
+} from "https://deno.land/std@0.87.0/fs/mod.ts";
 export {
   basename,
   dirname,
   join,
-} from "https://deno.land/std@0.86.0/path/mod.ts";
+} from "https://deno.land/std@0.87.0/path/mod.ts";
 export { dlog } from "https://bitbucket.org/jackfiszr/utils/raw/v0.68.0/mod.ts";
