@@ -1,7 +1,7 @@
 # pdfrex
 
 PDF manipulation module for Deno - split, merge, rotate, watermark, etc. (uses
-pdf-lib library).
+[pdf-lib](https://github.com/Hopding/pdf-lib) library).
 
 ## Split pdf files in current directory
 
