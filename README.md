@@ -3,12 +3,12 @@
 PDF manipulation module for Deno - split, merge, rotate, watermark, etc. (uses
 [pdf-lib](https://github.com/Hopding/pdf-lib) library).
 
-
 ## Install
 
     deno install --allow-read --allow-write -n pdfrex https://deno.land/x/pdfrex@v0.0.2/mod.ts
 
-This adds the command line tool `pdfrex` with two subcommands `split` and `merge`.
+This adds the command line tool `pdfrex` with two subcommands `split` and
+`merge`.
 
 ### Merge
 
@@ -24,7 +24,7 @@ This adds the command line tool `pdfrex` with two subcommands `split` and `merge
         -d, --dir     <string>  - Directory to merge pdfs from
         -f, --files   <string>  - Files to merge (separated by a comma)
         -o, --output  <string>  - File path to write merged pdf to
-    
+
 ### Split
 
     Usage: pdfrex split

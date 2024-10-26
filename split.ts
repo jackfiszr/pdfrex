@@ -17,7 +17,7 @@ export async function splitAll() {
 
 export async function splitPdf(
   sourceFilePath: string,
-  options?: { outputDir?: string; prefix?: string }
+  options?: { outputDir?: string; prefix?: string },
 ) {
   const sourceFile = await PDFDocument.load(Deno.readFileSync(sourceFilePath));
   const filename = basename(sourceFilePath).replace(".pdf", "");
