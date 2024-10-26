@@ -1,11 +1,6 @@
-import {
-  basename,
-  ensureDirSync,
-  expandGlobSync,
-  join,
-  PDFDocument,
-  PDFPage,
-} from "./deps.ts";
+import { PDFDocument, PDFPage } from "pdf-lib";
+import { ensureDirSync, expandGlobSync } from "@std/fs";
+import { basename, join } from "@std/path";
 
 export async function splitAll() {
   const globString = join(Deno.cwd(), "*.pdf");

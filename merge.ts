@@ -1,4 +1,6 @@
-import { expandGlobSync, join, PDFDocument, PDFPage } from "./deps.ts";
+import { expandGlobSync } from "@std/fs";
+import { join } from "@std/path";
+import { PDFDocument, PDFPage } from "pdf-lib";
 
 export async function mergeAll() {
   const globString = join(Deno.cwd(), "*.pdf");

@@ -1,4 +1,6 @@
-import { Command, expandGlobSync, join } from "./deps.ts";
+import { expandGlobSync } from "@std/fs";
+import { join } from "@std/path";
+import { Command } from "@cliffy/command";
 import { mergePdfs } from "./merge.ts";
 import { splitPdf } from "./split.ts";
 
