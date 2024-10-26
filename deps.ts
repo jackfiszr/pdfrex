@@ -1,7 +1,4 @@
-export {
-  ensureDirSync,
-  expandGlobSync,
-} from "https://deno.land/std@0.177.0/fs/mod.ts";
-export { basename, join } from "https://deno.land/std@0.177.0/path/mod.ts";
-export { PDFDocument, PDFPage } from "npm:pdf-lib";
-export { Command } from "https://deno.land/x/cliffy@v0.25.7/mod.ts";
+export { ensureDirSync, expandGlobSync } from "jsr:@std/fs@^1.0.5";
+export { basename, join } from "jsr:@std/path@^1.0.7";
+export { PDFDocument, PDFPage } from "npm:pdf-lib@^1.17.1";
+export { Command } from "jsr:@cliffy/command@1.0.0-rc.7";
