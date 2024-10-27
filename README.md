@@ -11,7 +11,8 @@ efficient and high-quality PDF manipulation.
 - **Merge PDFs**: Combine multiple PDFs into one.
 - **Split PDFs**: Separate a PDF into individual pages.
 - **Flexible CLI**: Easily execute PDF operations from the command line.
-- **Programmatic Use**: Import `pdfrex` functions directly in Deno projects.
+- **Programmatic Use**: Import `pdfrex` functions directly in Deno (or Node)
+  projects.
 
 ## Installation
 
@@ -139,6 +140,16 @@ await splitAll();
 
 // Split a specific PDF
 await splitPdf("document.pdf", { outputDir: "./pages", prefix: "page" });
+```
+
+### Adding to a Node.js project
+
+```bash
+npx jsr add @jackfiszr/pdfrex@0.0.3
+```
+
+```javascript
+import { mergePdfs, splitPdf } from "@jackfiszr/pdfrex@0.0.3";
 ```
 
 ## Contributing
