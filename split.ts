@@ -1,4 +1,4 @@
-import { PDFDocument, PDFPage } from "pdf-lib";
+import { PDFDocument, type PDFPage } from "pdf-lib";
 import { ensureDirSync, expandGlobSync } from "@std/fs";
 import { basename, join } from "@std/path";
 
