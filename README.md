@@ -1,70 +1,151 @@
 # pdfrex
 
-PDF manipulation module for Deno - split, merge, rotate, watermark, etc. (uses
-[pdf-lib](https://github.com/Hopding/pdf-lib) library).
+**`pdfrex`** is a command-line tool and Deno module for manipulating PDF files.
+It offers functionality to split, merge, and perform other PDF operations,
+making it a versatile tool for managing PDFs programmatically. `pdfrex` is built
+using the [`pdf-lib`](https://github.com/Hopding/pdf-lib) library, ensuring
+efficient and high-quality PDF manipulation.
 
-## Install
+## Features
 
-    deno install --allow-read --allow-write -n pdfrex https://deno.land/x/pdfrex@v0.0.2/mod.ts
+- **Merge PDFs**: Combine multiple PDFs into one.
+- **Split PDFs**: Separate a PDF into individual pages.
+- **Flexible CLI**: Easily execute PDF operations from the command line.
+- **Programmatic Use**: Import `pdfrex` functions directly in Deno projects.
 
-This adds the command line tool `pdfrex` with two subcommands `split` and
-`merge`.
+## Installation
+
+To install `pdfrex` as a CLI tool, run:
+
+```bash
+deno install --global --allow-read --allow-write jsr:@jackfiszr/pdfrex@0.0.3
+```
+
+This command installs `pdfrex` globally, enabling the `pdfrex` command with
+`merge` and `split` subcommands.
+
+### Permissions
+
+Since `pdfrex` reads and writes files, it requires the following permissions:
+
+- `--allow-read` for reading PDF files.
+- `--allow-write` for writing merged or split PDF files.
+
+## Usage
+
+### General CLI Usage
+
+```bash
+pdfrex <command> [options]
+```
+
+### Commands
+
+- **`merge`**: Combines multiple PDF files into a single document.
+- **`split`**: Divides a PDF document into individual pages.
 
 ### Merge
 
-    Usage: pdfrex merge
+Combine multiple PDF files into one.
 
-    Description:
+#### CLI Usage
 
-        Merge pdf files
+```bash
+pdfrex merge -d <directory> -f <file1,file2,...> -o <output-file>
+```
 
-    Options:
+#### Options
 
-        -h, --help              - Show this help.
-        -d, --dir     <string>  - Directory to merge pdfs from
-        -f, --files   <string>  - Files to merge (separated by a comma)
-        -o, --output  <string>  - File path to write merged pdf to
+- `-d, --dir <string>`: Directory to search for PDF files to merge (defaults to
+  the current directory).
+- `-f, --files <string>`: Specific files to merge (comma-separated).
+- `-o, --output <string>`: File path for the output merged PDF (defaults to
+  `merged.pdf` in the current directory).
+
+#### Examples
+
+1. **Merge all PDFs in a directory**:
+
+   ```bash
+   pdfrex merge -d ./pdfs -o combined.pdf
+   ```
+
+2. **Merge specific files**:
+
+   ```bash
+   pdfrex merge -f file1.pdf,file2.pdf,file3.pdf -o result.pdf
+   ```
 
 ### Split
 
-    Usage: pdfrex split
+Split a PDF into individual pages.
 
-    Description:
+#### CLI Usage
 
-        Split pdf files
+```bash
+pdfrex split -d <directory> -f <file1,file2,...> -o <output-dir> -p <prefix>
+```
 
-    Options:
+#### Options
 
-        -h, --help                  - Show this help.
-        -d, --dir         <string>  - Directory to split pdfs from
-        -f, --files       <string>  - Files to split (separated by a comma)
-        -o, --output-dir  <string>  - Directory to output results to
-        -p, --prefix      <string>  - Prefix of resulting files
+- `-d, --dir <string>`: Directory to search for PDF files to split (defaults to
+  the current directory).
+- `-f, --files <string>`: Specific files to split (comma-separated).
+- `-o, --output-dir <string>`: Directory to save the split PDF pages (default
+  creates a new directory named after the source file).
+- `-p, --prefix <string>`: Prefix for naming split files (default is the source
+  file name).
 
-## Split pdf files in current directory
+#### Examples
 
-    deno run --allow-read --allow-write https://deno.land/x/pdfrex@v0.0.2/split.ts
+1. **Split all PDFs in a directory**:
 
-or:
+   ```bash
+   pdfrex split -d ./pdfs -o ./split_pdfs
+   ```
 
-    import { splitAll, splitPdf } from "https://deno.land/x/pdfrex@v0.0.2/mod.ts";
+2. **Split a specific file with a custom prefix**:
 
-    // split all pdfs in working dir
-    splitAll();
+   ```bash
+   pdfrex split -f my_document.pdf -o ./output -p page
+   ```
 
-    // specify file path
-    splitPdf("/path/to/your/input_file.pdf");
+## Programmatic Usage
 
-## Merge pdf files in current directory
+Import `pdfrex` functions in your Deno project to perform PDF operations
+directly.
 
-    deno run --allow-read --allow-write https://deno.land/x/pdfrex@v0.0.2/merge.ts
+### Merge PDFs
 
-or:
+```typescript
+import { mergeAll, mergePdfs } from "jsr:@jackfiszr/pdfrex@0.0.3";
 
-    import { mergeAll, mergePdfs } from "https://deno.land/x/pdfrex@v0.0.2/mod.ts";
+// Merge all PDFs in the current directory
+await mergeAll();
 
-    // merge all pdfs in working dir
-    mergeAll();
+// Merge specific files
+await mergePdfs(["file1.pdf", "file2.pdf", "file3.pdf"], {
+  output: "combined.pdf",
+});
+```
 
-    // specify files to merge
-    mergePdfs(["file1.pdf", "file2.pdf", "file3.pdf"]);
+### Split PDFs
+
+```typescript
+import { splitAll, splitPdf } from "jsr:@jackfiszr/pdfrex@0.0.3";
+
+// Split all PDFs in the current directory
+await splitAll();
+
+// Split a specific PDF
+await splitPdf("document.pdf", { outputDir: "./pages", prefix: "page" });
+```
+
+## Contributing
+
+Contributions, issues, and feature requests are welcome! Feel free to check out
+the [issue tracker](https://github.com/jackfiszr/pdfrex/issues) and contribute.
+
+## License
+
+This project is licensed under the MIT License.
