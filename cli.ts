@@ -9,6 +9,12 @@ type Options = {
   files?: string;
 };
 
+/**
+ * Main function to set up and execute the CLI commands.
+ *
+ * Configures the `pdfrex` command with `merge` and `split` subcommands, each
+ * with options for directory, file selection, and output location.
+ */
 export function main() {
   new Command()
     .name("pdfrex")
@@ -45,7 +51,13 @@ export function main() {
     .parse(Deno.args);
 }
 
-function parseOptions(options: Options) {
+/**
+ * Parses command-line options to determine files for merging or splitting.
+ *
+ * @param {Options} options - Options containing directory and file patterns.
+ * @returns {string[]} - Array of file paths to process.
+ */
+function parseOptions(options: Options): string[] {
   const dir = options.dir || Deno.cwd();
   const files = options.files?.split(",");
 
