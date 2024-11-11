@@ -1,9 +1,10 @@
 {
   "name": "@jackfiszr/pdfrex",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "exports": "./mod.ts",
   "imports": {
     "@cliffy/command": "jsr:@cliffy/command@1.0.0-rc.7",
+    "@std/assert": "jsr:@std/assert@^1.0.7",
     "@std/fs": "jsr:@std/fs@^1.0.5",
     "@std/path": "jsr:@std/path@^1.0.7",
     "pdf-lib": "npm:pdf-lib@^1.17.1"

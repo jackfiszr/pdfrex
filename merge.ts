@@ -3,17 +3,26 @@ import { join } from "@std/path";
 import { PDFDocument, type PDFPage } from "pdf-lib";
 
 /**
- * Merges all PDF files in the current working directory.
+ * Merges all PDF files in the specified directory or the current working directory.
  *
- * This function finds all PDF files in the current directory and merges them
- * into a single PDF file named "merged.pdf" by default.
+ * @param {Object} [options] - Options for the merge operation.
+ * @param {string} [options.dir] - Directory path to search for PDF files. Defaults to the current working directory.
+ * @param {string} [options.output] - Path for the output merged PDF file. Defaults to "merged.pdf" in the specified or current directory.
+ *
+ * @returns {Promise<void>} - Resolves when the merging is complete and the file is saved.
  */
-export async function mergeAll() {
-  const globString = join(Deno.cwd(), "*.pdf");
+export async function mergeAll(
+  options: { dir?: string; output?: string } = {},
+) {
+  const directory = options.dir || Deno.cwd();
+  const outputFilePath = options.output || join(directory, "merged.pdf");
+
+  const globString = join(directory, "*.pdf");
   const pdfsToMerge = Array.from(expandGlobSync(globString)).map(
     (entry) => entry.path,
   );
-  await mergePdfs(pdfsToMerge);
+
+  await mergePdfs(pdfsToMerge, { output: outputFilePath });
 }
 
 /**
