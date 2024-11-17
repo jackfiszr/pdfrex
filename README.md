@@ -19,7 +19,7 @@ efficient and high-quality PDF manipulation.
 To install `pdfrex` as a CLI tool, run:
 
 ```bash
-deno install --global --allow-read --allow-write jsr:@jackfiszr/pdfrex@0.0.4
+deno install --global --allow-read --allow-write jsr:@jackfiszr/pdfrex@0.0.5
 ```
 
 This command installs `pdfrex` globally, enabling the `pdfrex` command with
@@ -119,7 +119,7 @@ directly.
 ### Merge PDFs
 
 ```typescript
-import { mergeAll, mergePdfs } from "jsr:@jackfiszr/pdfrex@0.0.4";
+import { mergeAll, mergePdfs } from "jsr:@jackfiszr/pdfrex@0.0.5";
 
 // Merge all PDFs in the current directory
 await mergeAll();
@@ -136,7 +136,7 @@ await mergePdfs(["file1.pdf", "file2.pdf", "file3.pdf"], {
 ### Split PDFs
 
 ```typescript
-import { splitAll, splitPdf } from "jsr:@jackfiszr/pdfrex@0.0.4";
+import { splitAll, splitPdf } from "jsr:@jackfiszr/pdfrex@0.0.5";
 
 // Split all PDFs in the current directory
 await splitAll();
@@ -148,11 +148,11 @@ await splitPdf("document.pdf", { outputDir: "./pages", prefix: "page" });
 ### Adding to a Node.js project
 
 ```bash
-npx jsr add @jackfiszr/pdfrex@0.0.4
+npx jsr add @jackfiszr/pdfrex@0.0.5
 ```
 
 ```javascript
-import { mergePdfs, splitPdf } from "@jackfiszr/pdfrex@0.0.4";
+import { mergePdfs, splitPdf } from "@jackfiszr/pdfrex@0.0.5";
 ```
 
 ## Contributing
