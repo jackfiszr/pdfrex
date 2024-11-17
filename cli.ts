@@ -1,3 +1,4 @@
+import pdfrex from "./deno.json" with { type: "json" };
 import { expandGlobSync } from "@std/fs";
 import { join } from "@std/path";
 import { Command } from "@cliffy/command";
@@ -18,6 +19,7 @@ type Options = {
 export function main() {
   new Command()
     .name("pdfrex")
+    .version(pdfrex.version).meta("deno", Deno.version.deno)
     .description(`Command line tool to merge or split pdf files`)
     .action(function () {
       this.showHelp();
