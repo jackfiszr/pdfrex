@@ -162,4 +162,4 @@ the [issue tracker](https://github.com/jackfiszr/pdfrex/issues) and contribute.
 
 ## License
 
-This project is licensed under the MIT License.
+GNU GENERAL PUBLIC LICENSE 3.0
