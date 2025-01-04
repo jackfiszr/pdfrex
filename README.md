@@ -1,5 +1,11 @@
 # pdfrex
 
+[![JSR](https://jsr.io/badges/@jackfiszr/pdfrex)](https://jsr.io/@jackfiszr/pdfrex)
+[![JSR Score](https://jsr.io/badges/@jackfiszr/pdfrex/score)](https://jsr.io/@jackfiszr/pdfrex)
+[![GitHub commit activity](https://img.shields.io/github/commit-activity/m/jackfiszr/pdfrex)](https://github.com/jackfiszr/pdfrex/pulse)
+[![GitHub last commit](https://img.shields.io/github/last-commit/jackfiszr/pdfrex)](https://github.com/jackfiszr/pdfrex/commits/main)
+[![GitHub](https://img.shields.io/github/license/jackfiszr/pdfrex)](https://github.com/jackfiszr/pdfrex/blob/main/LICENSE)
+
 **`pdfrex`** is a command-line tool and Deno module for manipulating PDF files.
 It offers functionality to split, merge, and perform other PDF operations,
 making it a versatile tool for managing PDFs programmatically. `pdfrex` is built
