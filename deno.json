@@ -1,6 +1,6 @@
 {
   "name": "@jackfiszr/pdfrex",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "exports": "./mod.ts",
   "imports": {
     "@cliffy/command": "jsr:@cliffy/command@1.0.0-rc.7",
