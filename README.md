@@ -7,15 +7,17 @@
 [![GitHub](https://img.shields.io/github/license/jackfiszr/pdfrex)](https://github.com/jackfiszr/pdfrex/blob/main/LICENSE)
 
 **`pdfrex`** is a command-line tool and Deno module for manipulating PDF files.
-It offers functionality to split, merge, and perform other PDF operations,
-making it a versatile tool for managing PDFs programmatically. `pdfrex` is built
-using the [`pdf-lib`](https://github.com/Hopding/pdf-lib) library, ensuring
-efficient and high-quality PDF manipulation.
+It offers functionality to split, merge, extract text, and perform other PDF
+operations, making it a versatile tool for managing PDFs programmatically.
+`pdfrex` is built using the [`pdf-lib`](https://pdf-lib.js.org/) and
+[`PDF.js`](https://mozilla.github.io/pdf.js/) libraries, ensuring efficient and
+high-quality PDF manipulation.
 
 ## Features
 
 - **Merge PDFs**: Combine multiple PDFs into one.
 - **Split PDFs**: Separate a PDF into individual pages.
+- **Extract text**: Convert PDFs to text files.
 - **Flexible CLI**: Easily execute PDF operations from the command line.
 - **Programmatic Use**: Import `pdfrex` functions directly in Deno (or Node)
   projects.
@@ -25,7 +27,7 @@ efficient and high-quality PDF manipulation.
 To install `pdfrex` as a CLI tool, run:
 
 ```bash
-deno install --global --allow-read --allow-write jsr:@jackfiszr/pdfrex@0.0.6
+deno install --global --allow-read --allow-write jsr:@jackfiszr/pdfrex@0.0.7
 ```
 
 This command installs `pdfrex` globally, enabling the `pdfrex` command with
@@ -36,7 +38,7 @@ This command installs `pdfrex` globally, enabling the `pdfrex` command with
 Since `pdfrex` reads and writes files, it requires the following permissions:
 
 - `--allow-read` for reading PDF files.
-- `--allow-write` for writing merged or split PDF files.
+- `--allow-write` for writing merged, split, or extracted text files.
 
 ## Usage
 
@@ -50,6 +52,7 @@ pdfrex <command> [options]
 
 - **`merge`**: Combines multiple PDF files into a single document.
 - **`split`**: Divides a PDF document into individual pages.
+- **`totxt`**: Extracts text from PDFs and saves it as text files.
 
 ### Merge
 
@@ -125,7 +128,7 @@ directly.
 ### Merge PDFs
 
 ```typescript
-import { mergeAll, mergePdfs } from "jsr:@jackfiszr/pdfrex@0.0.6";
+import { mergeAll, mergePdfs } from "jsr:@jackfiszr/pdfrex@0.0.7";
 
 // Merge all PDFs in the current directory
 await mergeAll();
@@ -142,7 +145,7 @@ await mergePdfs(["file1.pdf", "file2.pdf", "file3.pdf"], {
 ### Split PDFs
 
 ```typescript
-import { splitAll, splitPdf } from "jsr:@jackfiszr/pdfrex@0.0.6";
+import { splitAll, splitPdf } from "jsr:@jackfiszr/pdfrex@0.0.7";
 
 // Split all PDFs in the current directory
 await splitAll();
@@ -151,14 +154,53 @@ await splitAll();
 await splitPdf("document.pdf", { outputDir: "./pages", prefix: "page" });
 ```
 
-### Adding to a Node.js project
+### Extract Text
+
+Convert PDF files to text files.
+
+#### CLI Usage
 
 ```bash
-npx jsr add @jackfiszr/pdfrex@0.0.6
+pdfrex totxt -d <directory> -f <file1,file2,...> -o <output-dir>
 ```
 
-```javascript
-import { mergePdfs, splitPdf } from "@jackfiszr/pdfrex@0.0.6";
+#### Options
+
+- `-d, --dir <string>`: Directory to search for PDF files to extract text from
+  (defaults to the current directory).
+- `-f, --files <string>`: Specific files to extract text from (comma-separated).
+- `-o, --output-dir <string>`: Directory to save the extracted text files
+  (default is the same as the source PDF location).
+
+#### Examples
+
+1. **Extract text from all PDFs in a directory**:
+
+   ```bash
+   pdfrex totxt -d ./pdfs -o ./texts
+   ```
+
+2. **Extract text from a specific PDF**:
+
+   ```bash
+   pdfrex totxt -f document.pdf -o ./output
+   ```
+
+## Programmatic Usage
+
+Import `pdfrex` functions in your Deno project to perform PDF operations
+directly.
+
+### Extract Text from PDFs
+
+```typescript
+import { pdfToTxt, toTxtAll } from "jsr:@jackfiszr/pdfrex@0.0.7";
+
+// Extract text from all PDFs in the current directory
+await toTxtAll();
+
+// Extract text from a specific PDF
+await pdfToTxt("document.pdf", { outputDir: "./texts" });
 ```
 
 ## Contributing
