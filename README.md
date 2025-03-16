@@ -19,8 +19,7 @@ high-quality PDF manipulation.
 - **Split PDFs**: Separate a PDF into individual pages.
 - **Extract text**: Convert PDFs to text files.
 - **Flexible CLI**: Easily execute PDF operations from the command line.
-- **Programmatic Use**: Import `pdfrex` functions directly in Deno (or Node)
-  projects.
+- **Programmatic Use**: Import `pdfrex` functions directly in Deno projects.
 
 ## Installation
 
