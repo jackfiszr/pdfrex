@@ -9,5 +9,8 @@
     "@std/fs": "jsr:@std/fs@^1.0.5",
     "@std/path": "jsr:@std/path@^1.0.7",
     "pdf-lib": "npm:pdf-lib@^1.17.1"
+  },
+  "tasks": {
+    "test": "deno test --allow-read --allow-write"
   }
 }
