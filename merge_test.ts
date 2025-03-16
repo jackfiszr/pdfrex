@@ -1,4 +1,4 @@
-import { mergeAll, mergePdfs } from "./merge.ts";
+import { mergeAll, mergePdfs } from "@jackfiszr/pdfrex";
 import { join } from "@std/path";
 import { assertExists } from "@std/assert";
 import { createTestPdf } from "./test_utils.ts";

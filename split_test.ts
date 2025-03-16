@@ -1,6 +1,6 @@
+import { splitPdf } from "@jackfiszr/pdfrex";
 import { assertExists } from "@std/assert";
 import { join } from "@std/path";
-import { splitPdf } from "./split.ts";
 import { createTestPdf } from "./test_utils.ts";
 
 Deno.test("splitPdf should create separate pages from a PDF", async () => {

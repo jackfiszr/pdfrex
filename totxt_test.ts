@@ -1,7 +1,7 @@
+import { pdfToTxt, toTxtAll } from "@jackfiszr/pdfrex";
 import { assert } from "@std/assert";
 import { existsSync } from "@std/fs";
 import { join } from "@std/path";
-import { pdfToTxt, toTxtAll } from "@jackfiszr/pdfrex";
 import { createTestPdf } from "./test_utils.ts";
 
 Deno.test("pdfToTxt should create a text file with extracted content", async () => {
