@@ -150,6 +150,9 @@ import { splitAll, splitPdf } from "jsr:@jackfiszr/pdfrex@0.0.7";
 // Split all PDFs in the current directory
 await splitAll();
 
+// Split all PDFs in a specified directory
+await splitAll({ dir: "./my_pdfs" });
+
 // Split a specific PDF
 await splitPdf("document.pdf", { outputDir: "./pages", prefix: "page" });
 ```

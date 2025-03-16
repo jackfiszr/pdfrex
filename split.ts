@@ -3,16 +3,21 @@ import { ensureDirSync, expandGlobSync } from "@std/fs";
 import { basename, join } from "@std/path";
 
 /**
- * Splits all PDF files in the current working directory.
+ * Splits all PDF files in the specified directory.
  *
- * This function locates all PDF files in the current directory and splits
- * each one into individual pages, saving each page as a separate PDF.
+ * @param options - An object containing optional parameters.
+ * @param options.dir - The directory to search for PDF files. Defaults to the current working directory.
+ * @param options.outputDir - The directory to save the split PDF files. If not specified, the split files will be saved in the same directory as the original PDF files.
+ * @returns A promise that resolves when all PDF files have been split.
  */
-export async function splitAll() {
-  const globString = join(Deno.cwd(), "*.pdf");
+export async function splitAll(
+  options: { dir?: string; outputDir?: string } = {},
+) {
+  const directory = options.dir || Deno.cwd();
+  const globString = join(directory, "*.pdf");
 
   for (const pdf of expandGlobSync(globString)) {
-    await splitPdf(pdf.path);
+    await splitPdf(pdf.path, { outputDir: options.outputDir });
   }
 }
 
