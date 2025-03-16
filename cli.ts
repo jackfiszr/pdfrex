@@ -4,6 +4,7 @@ import { join } from "@std/path";
 import { Command } from "@cliffy/command";
 import { mergePdfs } from "./merge.ts";
 import { splitPdf } from "./split.ts";
+import { pdfToTxt } from "./totxt.ts";
 
 type Options = {
   dir?: string;
@@ -13,8 +14,8 @@ type Options = {
 /**
  * Main function to set up and execute the CLI commands.
  *
- * Configures the `pdfrex` command with `merge` and `split` subcommands, each
- * with options for directory, file selection, and output location.
+ * Configures the `pdfrex` command with `merge`, `split` and `totext` subcommands,
+ * each with options for directory, file selection, and output location.
  */
 export function main() {
   new Command()
@@ -48,6 +49,19 @@ export function main() {
         return;
       }
       const all = files.map((file) => splitPdf(file, options));
+      await Promise.all(all);
+    })
+    .command("totxt", "Convert pdf files to text")
+    .option("-d --dir <string>", "Directory to convert pdfs from")
+    .option("-f --files <string>", "Files to convert (separated by a comma)")
+    .option("-o --output-dir <string>", "Directory to output text files to")
+    .action(async (options) => {
+      const files = parseOptions(options);
+      if (files.length === 0) {
+        console.log("No files to convert!");
+        return;
+      }
+      const all = files.map((file) => pdfToTxt(file, options));
       await Promise.all(all);
     })
     .parse(Deno.args);
